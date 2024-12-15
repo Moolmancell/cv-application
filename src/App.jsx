@@ -17,6 +17,11 @@ function App() {
   const [number, setNumber] = useState("");  
   const [address, setAddress] = useState("");
 
+  details.name = name;
+  details.email = email;
+  details.number = number;
+  details.address = address;
+
   {/* Education */}
 
     const [education, setEducation] = useState([]);
@@ -105,19 +110,15 @@ function App() {
       <PersonalDetails 
         nameUpdater={(e) => {
           setName(e.target.value)
-          details.name = name;
         }}
         emailUpdater={(e) => {
           setEmail(e.target.value)
-          details.email = email;
         }}
         numberUpdater={(e) => {
           setNumber(e.target.value)
-          details.number = number;
         }}
         addressUpdater={(e) => {
           setAddress(e.target.value);
-          details.address = address;
         }}
       />
 
