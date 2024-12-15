@@ -12,35 +12,10 @@ function App() {
 
   console.log(details)
 
-  {/* Personal Details */}
-
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [number, setNumber] = useState("");  
-    const [address, setAddress] = useState("");
-
-    function setNewName(e) {
-      setName(e.target.value)
-    }
-    details.name = name;
-
-    function setNewEmail(e) {
-      setEmail(e.target.value);
-    }
-    details.email = email;
-    
-    function setNewNumber(e) {
-      setNumber(e.target.value);
-    }
-    details.number = number;
-
-    function setNewAddress(e) {
-      setAddress(e.target.value);
-    }
-    details.address = address;
-  
-  {/* Personal Details */}
-
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");  
+  const [address, setAddress] = useState("");
 
   {/* Education */}
 
@@ -128,10 +103,22 @@ function App() {
   return <div className='flex'>
     <form>
       <PersonalDetails 
-        nameUpdater={setNewName}
-        emailUpdater={setNewEmail}
-        numberUpdater={setNewNumber}
-        addressUpdater={setNewAddress}
+        nameUpdater={(e) => {
+          setName(e.target.value)
+          details.name = name;
+        }}
+        emailUpdater={(e) => {
+          setEmail(e.target.value)
+          details.email = email;
+        }}
+        numberUpdater={(e) => {
+          setNumber(e.target.value)
+          details.number = number;
+        }}
+        addressUpdater={(e) => {
+          setAddress(e.target.value);
+          details.address = address;
+        }}
       />
 
     </form>
