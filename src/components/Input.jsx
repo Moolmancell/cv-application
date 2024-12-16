@@ -1,4 +1,4 @@
-export function Input({callback, type, id, value= ""}) {
+export function Input({callback, type, id, value}) {
     return <input 
       type={type}
       className='border-solid border-2 border-black'
