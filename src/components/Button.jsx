@@ -1,7 +1,7 @@
-export function Button({callback = ()=>{}, children, style}) {
+export function Button({callback = ()=>{}, children, classes}) {
     return <button
         onClick={callback}
-        className={style || 'border-solid border-2 border-black block'}
+        className={classes || 'border-solid border-2 border-black block'}
     >
     {children}
   </button>
