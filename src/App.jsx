@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { PersonalDetails } from './components/PersonalDetails';
+import { EducationDetails} from './components/EducationDetails';
+import { ExperienceDetails } from './components/ExperienceDetails';
 import { Button } from './components/Button';
 import { Label } from './components/Label';
 
@@ -8,7 +10,8 @@ let details = {
   email: '',
   number: '',
   address: '',
-  education: []
+  education: [],
+  experience: []
 };
 
 function generateRandomkey() {
@@ -21,16 +24,26 @@ function App() {
   const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
   const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
+
   const [isTabOpen, setTab] = useState('Close');
+  const [isTabOpenExp, setTabExp] = useState('Close');
+
   const [isAddButtonHidden, setButton] = useState(false);
+  const [isAddButtonHiddenEXP, setButtonEXP] = useState(false);
+
 
   details.name = name;
   details.email = email;
   details.number = number;
   details.address = address;
   details.education = education;
+  details.experience = experience;
 
   console.log(details)
+  console.log(isTabOpen)
+
+  //Education
 
   function setNewEducation(e, ID) {
     e.preventDefault();
@@ -70,6 +83,47 @@ function App() {
     setTab('Close');
   }
 
+  //Experience
+
+  function setNewExperience(e, ID) {
+    e.preventDefault();
+
+    let newExperience = {
+      id: ID,
+      companyName: '',
+      position: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+      description: ''
+    };
+
+    setExperience((prev) => [...prev, newExperience]);
+  }
+
+  function deleteExperience(e, id) {
+    e.preventDefault();
+    setExperience((prev) => prev.filter((ex) => ex.id !== id));
+  }
+
+  function setFieldExp(e, id, field) {
+    setExperience((prevExperience) =>
+      prevExperience.map((ex) =>
+        ex.id === id ? { ...ex, [field]: e.target.value } : ex
+      )
+    );
+  }
+
+  function openTabExp(e, id) {
+    e.preventDefault();
+    setTabExp('Open:' + id);
+  }
+
+  function closeTabExp(e) {
+    e.preventDefault();
+    setTabExp('Close');
+  }
+
   return (
     <div className="flex">
       <form>
@@ -80,85 +134,35 @@ function App() {
           addressUpdater={(e) => setAddress(e.target.value)}
         />
 
-        <fieldset>
-          <legend>Education</legend>
-          {education.map((ed) => (
-            <div key={ed.id}>
-              {/* Show editable fields if the tab is open for this ID */}
-              {isTabOpen === 'Open:' + ed.id && (
-                <div>
-                  <Label
-                    name="School"
-                    callback={(e) => setField(e, ed.id, 'school')}
-                    type="text"
-                    id="educSchool"
-                    value={ed.school || ''}
-                  />
-                  <Label
-                    name="Degree"
-                    callback={(e) => setField(e, ed.id, 'degree')}
-                    type="text"
-                    id="educDegree"
-                    value={ed.degree || ''}
-                  />
-                  <Label
-                    name="Start Date"
-                    callback={(e) => setField(e, ed.id, 'startDate')}
-                    type="date"
-                    id="educStartDate"
-                    value={ed.startDate || ''}
-                  />
-                  <Label
-                    name="End Date"
-                    callback={(e) => setField(e, ed.id, 'endDate')}
-                    type="date"
-                    id="educEndDate"
-                    value={ed.endDate || ''}
-                  />
-                  <Label
-                    name="Location"
-                    callback={(e) => setField(e, ed.id, 'location')}
-                    type="text"
-                    id="educLocation"
-                    value={ed.location || ''}
-                  />
-                  <Button callback={(e) => {
-                    closeTab(e)
-                    setButton(false);                    
-                    }}>
-                      Done
-                    </Button>
-                </div>
-              )}
-              {/* Show a button to open the tab if it's closed */}
-              {isTabOpen !== 'Open:' + ed.id && (
-                <Button callback={(e) => {
-                  openTab(e, ed.id);
-                  setButton(true);
-                  }}>
-                  {ed.school || 'Edit Education'}
-                </Button>
-              )}
-            </div>
-          ))}
+        <EducationDetails
+          education={education}
+          isTabOpen={isTabOpen}
+          isAddButtonHidden={isAddButtonHidden}
+          setField={setField}
+          openTab={openTab}
+          closeTab={closeTab}
+          setNewEducation={setNewEducation}
+          setButton={setButton}
+          generateRandomkey={generateRandomkey}
+          deleteEducation={deleteEducation}
+        />
+        
+        <ExperienceDetails
+          experience={experience}
+          isTabOpenExp={isTabOpenExp}
+          isAddButtonHiddenEXP={isAddButtonHiddenEXP}
+          setFieldExp={setFieldExp}
+          openTabExp={openTabExp}
+          closeTabExp={closeTabExp}
+          setNewExperience={setNewExperience}
+          setButtonEXP={setButtonEXP}
+          generateRandomkey={generateRandomkey}
+          deleteExperience={deleteExperience}
+        />
 
-          {!isAddButtonHidden && (
-            <Button
-              callback={(e) => {
-                const newID = generateRandomkey();
-                setNewEducation(e, newID);
-                setButton(true);
-                openTab(e, newID);
-              }}
-            >
-              Add
-            </Button>
-          )}
-        </fieldset>
       </form>
 
       <div>
-        {/* Display personal details */}
         <h1>{details.name}</h1>
         <h1>{details.email}</h1>
         <h1>{details.number}</h1>

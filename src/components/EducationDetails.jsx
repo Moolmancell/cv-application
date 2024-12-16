@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from './Button';
 import { Label } from './Label';
 
-export const EducationSection = ({
+export const EducationDetails = ({
   education,
   isTabOpen,
   isAddButtonHidden,
@@ -11,7 +11,8 @@ export const EducationSection = ({
   closeTab,
   setNewEducation,
   setButton,
-  generateRandomkey
+  generateRandomkey,
+  deleteEducation
 }) => {
   return (
     <fieldset>
@@ -64,9 +65,18 @@ export const EducationSection = ({
               >
                 Done
               </Button>
+              <Button
+                callback={(e) => {
+                  closeTab(e);
+                  setButton(false);
+                  deleteEducation(e, ed.id);
+                }}
+              >
+                Delete
+              </Button>
             </div>
           )}
-          {isTabOpen !== 'Open:' + ed.id && (
+          {isTabOpen === 'Close' && (
             <Button
               callback={(e) => {
                 openTab(e, ed.id);
