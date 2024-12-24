@@ -161,8 +161,8 @@ function App() {
         />
 
       {/* Print Button */}
-      <div className="flex justify-center mt-8 no-print">
-          <button onClick={() => window.print()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Print / Save as PDF</button>
+      <div className="flex justify-center mt-8 no-print ">
+          <button onClick={() => window.print()} className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-full">Print / Save as PDF</button>
       </div>
 
       </form>      
