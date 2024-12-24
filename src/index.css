@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    .add-button {
+        @apply bg-sky-500 hover:bg-sky-600 rounded-full pt-1 pb-1 pl-5 pr-5 text-white font-semibold
+                flex gap-1 m-auto;
+    }
+
+    .delete-button {
+        @apply text-red-500 border border-red-500 hover:bg-red-600 rounded-lg pt-1 pb-1 pl-5 pr-5 hover:text-white font-semibold
+                flex gap-1;
+    }
+
+    .done-button {
+        @apply bg-green-500 hover:bg-green-600 rounded-lg pt-1 pb-1 pl-5 pr-5 text-white
+                flex gap-1;
+    }
+
+} 

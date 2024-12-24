@@ -6,8 +6,8 @@ export function PersonalDetails({
     numberUpdater,
     addressUpdater
 }) {
-    return <fieldset>
-        <legend>Personal Details</legend>
+    return <fieldset className="border border-gray-200 p-5 pt-0 rounded-lg shadow-md mb-4 bg-gray-50">
+        <legend className="mb-3 text-lg font-bold text-slate-600">Personal Details</legend>
         <Label 
             name={"Name"}
             callback={nameUpdater}

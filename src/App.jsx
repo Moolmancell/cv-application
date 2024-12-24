@@ -126,7 +126,7 @@ function App() {
 
   return (
     <div className="flex">
-      <form>
+      <form className='flex-none'>
         <PersonalDetails
           nameUpdater={(e) => setName(e.target.value)}
           emailUpdater={(e) => setEmail(e.target.value)}

@@ -15,8 +15,8 @@ export const EducationDetails = ({
   deleteEducation
 }) => {
   return (
-    <fieldset>
-      <legend>Education</legend>
+    <fieldset className='border border-gray-200 p-5 pt-0 rounded-lg shadow-md mb-4 bg-gray-50'>
+      <legend className='mb-3 text-lg font-bold text-slate-600'>Education</legend>
       {education.map((ed) => (
         <div key={ed.id}>
           {/* Show editable fields if the tab is open for this ID */}
@@ -57,23 +57,29 @@ export const EducationDetails = ({
                 id="educLocation"
                 value={ed.location || ''}
               />
-              <Button
-                callback={(e) => {
-                  closeTab(e);
-                  setButton(false);
-                }}
-              >
-                Done
-              </Button>
+
+              <div className='flex justify-between'>
               <Button
                 callback={(e) => {
                   closeTab(e);
                   setButton(false);
                   deleteEducation(e, ed.id);
                 }}
+                classes={"delete-button"}
               >
                 Delete
               </Button>
+              <Button
+                callback={(e) => {
+                  closeTab(e);
+                  setButton(false);
+                }}
+                classes={"done-button"}
+              >
+                Done
+              </Button>
+              </div>
+
             </div>
           )}
           {isTabOpen === 'Close' && (
@@ -97,8 +103,11 @@ export const EducationDetails = ({
             setButton(true);
             openTab(e, newID);
           }}
+          classes={"add-button"}
         >
           Add
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+
         </Button>
       )}
     </fieldset>

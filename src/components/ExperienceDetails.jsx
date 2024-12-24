@@ -15,8 +15,8 @@ export function ExperienceDetails({
   deleteExperience
 }) {
   return (
-    <fieldset>
-      <legend>Experience</legend>
+    <fieldset className='border border-gray-200 p-5 pt-0 rounded-lg shadow-md mb-4 bg-gray-50'>
+      <legend className='mb-3 text-lg font-bold text-slate-600'>Experience</legend>
       {experience.map((exp) => (
         <div key={exp.id}>
           {isTabOpenExp === 'Open:' + exp.id && (
@@ -62,27 +62,33 @@ export function ExperienceDetails({
                   id="expDescription"
                   value={exp.description || ''}
                   onChange={(e) => setFieldExp(e, exp.id, 'description')}
-                  className="border-solid border-2 border-black block"
+                  className="block border-2 focus:ring-2 focus:border-sky-500 focus:outline-none border-slate-400 rounded-lg p-2 mb-4 w-64"
                 />
               </label>
-              
-              <Button
-                callback={(e) => {
-                  closeTabExp(e);
-                  setButtonEXP(false);
-                }}
-              >
-                Done
-              </Button>
+
+
+              <div className='flex justify-between'>
               <Button
                 callback={(e) => {
                   closeTabExp(e);
                   setButtonEXP(false);
                   deleteExperience(e, exp.id);
                 }}
+                classes={"delete-button"}
               >
                 Delete
               </Button>
+              <Button
+                callback={(e) => {
+                  closeTabExp(e);
+                  setButtonEXP(false);
+                }}
+                classes={"done-button"}
+              >
+                Done
+              </Button>
+              </div>
+              
             </div>
           )}
           {isTabOpenExp === 'Close' && (
@@ -105,8 +111,10 @@ export function ExperienceDetails({
             setButtonEXP(true);
             openTabExp(e, newID);
           }}
+          classes={"add-button"}
         >
           Add
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
         </Button>
       )}
     </fieldset>
