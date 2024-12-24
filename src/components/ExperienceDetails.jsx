@@ -97,8 +97,9 @@ export function ExperienceDetails({
                 openTabExp(e, exp.id);
                 setButtonEXP(true);
               }}
+              classes={"tabs"}
             >
-              {exp.companyName || 'Edit Experience'}
+              {exp.companyName || <i className='text-gray-500'>Edit Education</i>}
             </Button>
           )}
         </div>

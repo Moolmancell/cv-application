@@ -88,8 +88,9 @@ export const EducationDetails = ({
                 openTab(e, ed.id);
                 setButton(true);
               }}
+              classes={"tabs"}
             >
-              {ed.school || 'Edit Education'}
+              {ed.school || <i className='text-gray-500'>Edit Education</i>}
             </Button>
           )}
         </div>
