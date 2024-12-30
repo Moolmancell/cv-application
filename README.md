@@ -2,14 +2,6 @@
 
 A modern and responsive CV Builder app built using React, Vite, and TailwindCSS. This app allows users to create, customize, and download professional CVs effortlessly.
 
-## Features
-
-- **Intuitive UI**: Easy-to-use interface for creating and customizing CVs.
-- **Real-Time Preview**: Instant preview of the CV as you edit.
-- **Responsive Design**: Fully responsive, works on all devices.
-- **Export to PDF**: Download your CV as a high-quality PDF.
-- **Hosted on Vercel**: Fast and reliable deployment.
-
 ## Tech Stack
 
 - **React**: For building the user interface.
